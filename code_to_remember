@@ -1,0 +1,25 @@
+list1.index('abcde') #get the index of 'abcde' in list1
+
+list1[::-1] #inverse list1
+
+pd.read_csv('file', sep='|', names=columns, index_col='movie_id', encoding="ISO-8859-1")
+
+sorted(dict1.items(), key= lambda k: k[1]) #sort dict1 based on the value. return list of tuple
+sorted(dict1, key= lambda k: k[1]) #sort dict1 based on the value. return list of key
+df1.sort_values('year', ascending=True) #dataframe sort based on 'year'
+
+df1.dropna(subset=['year'], inplace=False) #delete rows whose 'year' is nan
+
+df1[df1["year"].isin(list1)] #select rows whose 'year' in list1
+
+pd.DatetimeIndex(df1['date']) #change 'date' column to 'datetime64[ns]' type
+pd.DatetimeIndex(df1['date'].fillna(0)).year.astype(int) # get year from 'date' and change it to int type
+pd.to_datetime(df1["timestamp"], unit = "s") # change 'timestamp' to datetime64[ns] type
+pd.to_datetime(df1["timestamp"], unit = "s").dt.year # df1['timestamp'] is # of seconds since 1970. Change it to date and get the year
+
+df.rename(columns={'col1': "col2"}, inplace = True) #change the name of one column
+
+df1.groupby('col1').agg(['min', 'max']) #group by col1. calculate 'min' and 'max' of all other columns
+df1.groupby('col1').col2.agg(['count', 'mean']) #group by col1. calculate 'count' and 'mean' of col2
+df1.groupby('col1').col2.agg({'col2_count': 'count', 'col2_mean': 'mean'}) #define the column name
+df1.groupby('col1').agg({'col2': ['min', 'max'], 'col3': min})
