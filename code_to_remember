@@ -35,3 +35,11 @@ different multiply
 (2) A @ B, np.dot(A, B)
 - vector: element-wise and sum
 - matrix: linear algebra multiply
+
+sparse matrix
+X_sparse = sp.coo_matrix([[5., 0., 0.], [1., 1., 0.]])
+sp.coo_matrix(([-np.inf] * X_sparse.data.shape[0], (X_sparse.row, X_sparse.col)), shape = X_sparse.shape)
+output: matrix([[-inf,   0.,   0.],
+                [-inf, -inf,   0.]])
+X_sparse.data: all data in X_sparse that is not 0
+X_sparse.row, X_sparse.col: the row and col of data in X_sparse
