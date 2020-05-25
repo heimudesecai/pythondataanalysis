@@ -27,3 +27,11 @@ df1.groupby('col1').agg({'col2': ['min', 'max'], 'col3': min})
 
 df1.pivot_table(index = 'col1', columns = 'col2', values = 'col3', aggfunc = 'max', fill_value = 0) 
 #All distinct values of col1 become index. All distinct values of col2 become column name. Values are col3.
+
+different multiply
+(1) A * B, np.multiply(A, B)
+- vector: element wise
+- matrix: element wise
+(2) A @ B, np.dot(A, B)
+- vector: element-wise and sum
+- matrix: linear algebra multiply
