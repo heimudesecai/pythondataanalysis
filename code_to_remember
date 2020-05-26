@@ -61,3 +61,5 @@ array([[1, 0, 4],
 array([[1, 0, 2],
        [0, 0, 3],
        [4, 5, 6]])
+
+X_csc.getcol(j).A.ravel() #.getcol(j) get the jth column. .A convert to array. .ravel convert matrix to vector
