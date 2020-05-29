@@ -35,6 +35,11 @@ different multiply
 (2) A @ B, np.dot(A, B)
 - vector: element-wise and sum
 - matrix: linear algebra multiply
+(3) np.outer(A, B)
+- w = np.array([5, 7])
+  np.outer(w, w)
+  output: array([[25, 35],
+                 [35, 49]])
 
 sparse matrix
 X_sparse = sp.coo_matrix([[5., 0., 0.], [1., 1., 0.]])
@@ -63,3 +68,7 @@ array([[1, 0, 2],
        [4, 5, 6]])
 
 X_csc.getcol(j).A.ravel() #.getcol(j) get the jth column. .A convert to array. .ravel convert matrix to vector
+
+x.astype(np.float64) #change the datatype of np.array x
+
+1D arrays in Numpy are always treated as column vectors. shape is (k,). If A is 1D arrays, A and A.T are the same.
