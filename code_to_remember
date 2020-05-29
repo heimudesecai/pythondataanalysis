@@ -42,14 +42,24 @@ different multiply
                  [35, 49]])
 
 sparse matrix
-X_sparse = sp.coo_matrix([[5., 0., 0.], [1., 1., 0.]])
-sp.coo_matrix(([-np.inf] * X_sparse.data.shape[0], (X_sparse.row, X_sparse.col)), shape = X_sparse.shape)
+>>> X_sparse = sp.coo_matrix([[5., 0., 0.], [1., 1., 0.]])
+>>> sp.coo_matrix(([-np.inf] * X_sparse.data.shape[0], (X_sparse.row, X_sparse.col)), shape = X_sparse.shape)
 output: matrix([[-inf,   0.,   0.],
                 [-inf, -inf,   0.]])
-X_sparse.data: all data in X_sparse that is not 0
-X_sparse.row, X_sparse.col: the row and col of data in X_sparse
+# X_sparse.data: all data in X_sparse that is not 0
+# X_sparse.row, X_sparse.col: the row and col of data in X_sparse
 
 (1) sp.coo_matrix: data, column index, row index
+>>> data = [2, 4, 1, 3, 1, 1]
+>>> row = [1, 3, 2, 0, 3, 1]
+>>> col = [0, 0, 1, 2, 2, 3]
+>>> m = sp.coo_matrix((data, (row, col)), shape = (4, 4))
+>>> m.A
+[[0 0 3 0]
+ [2 0 0 1]
+ [0 1 0 0]
+ [4 0 1 0]]
+ 
 (2) sp.csc_matrix
 >>> indptr = np.array([0, 2, 3, 6]) #data[0:2] -> col0; data[2:3] -> col1; data[3:6] -> col2
 >>> indices = np.array([0, 2, 2, 0, 1, 2])
@@ -58,6 +68,9 @@ X_sparse.row, X_sparse.col: the row and col of data in X_sparse
 array([[1, 0, 4],
        [0, 0, 5],
        [2, 3, 6]])
+m.tocsc() #Convert m to csc. CSC matrix allows for fast column access
+X_csc.getcol(j).A.ravel() #.getcol(j) get the jth column. .A converts the sparse matrix to its dense representation (of type np.ndarray). .ravel convert 2D matrix to vector
+
 (3) sp.csr_matrix   
 >>> indptr = np.array([0, 2, 3, 6]) #data[0:2] -> row0; data[2:3] -> row1; data[3:6] -> row2
 >>> indices = np.array([0, 2, 2, 0, 1, 2])
@@ -66,8 +79,8 @@ array([[1, 0, 4],
 array([[1, 0, 2],
        [0, 0, 3],
        [4, 5, 6]])
-
-X_csc.getcol(j).A.ravel() #.getcol(j) get the jth column. .A convert to array. .ravel convert matrix to vector
+m.tocsr() #Convert m to CSR. CSR matrix allows for fast row access
+X_csr.getrow(i)
 
 x.astype(np.float64) #change the datatype of np.array x
 
