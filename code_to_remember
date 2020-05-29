@@ -69,7 +69,8 @@ array([[1, 0, 4],
        [0, 0, 5],
        [2, 3, 6]])
 m.tocsc() #Convert m to csc. CSC matrix allows for fast column access
-X_csc.getcol(j).A.ravel() #.getcol(j) get the jth column. .A converts the sparse matrix to its dense representation (of type np.ndarray). .ravel convert 2D matrix to vector
+X_csc.getcol(j).A.ravel() #.getcol(j) get the jth column. .A converts the sparse matrix to its dense representation (of type np.ndarray)
+#.ravel convert 2D matrix to vector
 
 (3) sp.csr_matrix   
 >>> indptr = np.array([0, 2, 3, 6]) #data[0:2] -> row0; data[2:3] -> row1; data[3:6] -> row2
@@ -81,6 +82,10 @@ array([[1, 0, 2],
        [4, 5, 6]])
 m.tocsr() #Convert m to CSR. CSR matrix allows for fast row access
 X_csr.getrow(i)
+
+If an operation is supported by both scipy.sparse and numpy, always use the scipy.sparse version. 
+Sometimes the numpy version will convert the sparse matrix input to dense matrix. 
+For example, use A.dot(x) instead of np.dot(A, x)
 
 x.astype(np.float64) #change the datatype of np.array x
 
