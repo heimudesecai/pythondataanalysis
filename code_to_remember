@@ -72,3 +72,18 @@ X_csc.getcol(j).A.ravel() #.getcol(j) get the jth column. .A convert to array. .
 x.astype(np.float64) #change the datatype of np.array x
 
 1D arrays in Numpy are always treated as column vectors. shape is (k,). If A is 1D arrays, A and A.T are the same.
+
+Broadcasting:
+A and B have the same shape in the same axis. Or one of them has shape 1 in the same axis.
+
+Use None to change the shape:
+b = np.array(10) #0D, 10
+b_1d = b[None] #turn 0D to 1D, [10]
+b_2d = b[None, None] #turn 0D to 2D, [[10]]
+b_1d[:, None] #turn 1D to 2D, [[10]]
+v = np.array([1, 3])
+w = np.array([5, 7])
+print(np.outer(v, w))
+print(v[:,None] @ w[:,None].T)
+[[ 5  7]
+ [15 21]]
