@@ -127,3 +127,35 @@ df["Full Name 4"] = df["First Name"] + " " + df["Last Name"]
 vectorization 
 https://engineering.upside.com/a-beginners-guide-to-optimizing-pandas-code-for-speed-c09ef2c6a4d6
 https://datascience.blog.wzb.eu/2018/02/02/vectorization-and-parallelization-in-python-with-numpy-and-pandas/
+
+wide format vs long format
+wide formate: 
+- each raw represents an observation
+- each column represents a feature
+long format: 
+- one or more raws represent an observation 
+- one column for the observation ID, one column for feature's name, and one for feature's value
+
+wide to long:
+df_wide.melt(id_vars = ["ID"], value_vars = ["full name", "sex"], var_name = "feature", value_name = "value")
+- id_vars: names of the columns with the observation IDs
+- value_vars: names of the feature columns
+- var_name: name of the new column that will contain the feature names
+- value_name: name of the new column that will contain the feature values.
+output:
+       ID   feature    value
+   0   s1   full name  Smith
+   1   s1   sex        male
+   2   s2   full name  Mary
+   3   s3   sex        female
+
+long to wide:
+df_long.pivot_table(index = "ID", columns = "feature", values = "value")
+- index: name of the column with the ids.
+- columns: name of the column that contains the feature names.
+- values: name of the column that contains the feature values.
+output:
+      feature    full name   sex
+      ID
+      s1         Smith       male
+      s2         Mary        female
