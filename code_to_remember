@@ -26,6 +26,7 @@ df1.groupby('col1').col2.agg({'col2_count': 'count', 'col2_mean': 'mean'}) #grou
 df1.groupby('col1').agg({'col2': ['min', 'max'], 'col3': min})
 .agg() can only aggregate data in each column separately, so it cannot compute values which involve two columns
 .apply can handle multi-column operations
+https://pandas.pydata.org/pandas-docs/stable/user_guide/groupby.html
 
 different multiply
 (1) A * B, np.multiply(A, B)
@@ -164,3 +165,4 @@ df1.pivot_table(index = 'col1', columns = 'col2', values = 'col3', aggfunc = 'ma
 
 pd.concat([df1, df2]) #concat along raws, df1 and df2 have the same columns names (not necessary)
 pd.concat([df1, df3], axis = 1) #concat along column
+
