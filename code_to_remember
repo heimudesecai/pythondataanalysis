@@ -120,7 +120,7 @@ for row_index, row in df.iterrows():
     full_names.append(row["First Name"] + " " + row["Last Name"])
 df["Full Name 2"] = full_names
 (3) apply with axis=1
-df["Full Name 3"] = df.apply(lambda row: row["First Name"] + " " + row["Last Name"], axis=1)
+df["Full Name 3"] = df.apply(lambda x: x["First Name"] + " " + row["Last Name"], axis=1) #x represents each row
 (4) Pandas vectorization
 df["Full Name 4"] = df["First Name"] + " " + df["Last Name"]
 
