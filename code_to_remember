@@ -105,3 +105,25 @@ print(np.outer(v, w))
 print(v[:,None] @ w[:,None].T)
 [[ 5  7]
  [15 21]]
+ 
+df[~df["First Name"].isin(["Jim", "Kim"])] # ~ negation symbol
+df.query('`First Name` in ["Jim", "Kim"]') # use a query string to select rows
+
+Iterate through rows:
+eg. use "first name" and "last name" to add a new column "full name"
+(1) .iloc along with row index
+for i in range(len(df)):
+    df.loc[i, "Full Name 1"] = df.loc[i, "First Name"] + " " + df.loc[i, "Last Name"]
+(2) iterrows method
+full_names = []
+for row_index, row in df.iterrows():
+    full_names.append(row["First Name"] + " " + row["Last Name"])
+df["Full Name 2"] = full_names
+(3) apply with axis=1
+df["Full Name 3"] = df.apply(lambda row: row["First Name"] + " " + row["Last Name"], axis=1)
+(4) Pandas vectorization
+df["Full Name 4"] = df["First Name"] + " " + df["Last Name"]
+
+vectorization 
+https://engineering.upside.com/a-beginners-guide-to-optimizing-pandas-code-for-speed-c09ef2c6a4d6
+https://datascience.blog.wzb.eu/2018/02/02/vectorization-and-parallelization-in-python-with-numpy-and-pandas/
