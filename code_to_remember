@@ -22,11 +22,10 @@ df.rename(columns={'col1': "col2"}, inplace = True) #change the name of one colu
 
 df1.groupby('col1').agg(['min', 'max']) #group by col1. calculate 'min' and 'max' of all other columns
 df1.groupby('col1').col2.agg(['count', 'mean']) #group by col1. calculate 'count' and 'mean' of col2
-df1.groupby('col1').col2.agg({'col2_count': 'count', 'col2_mean': 'mean'}) #define the column name
+df1.groupby('col1').col2.agg({'col2_count': 'count', 'col2_mean': 'mean'}) #group by col1 and define the column name
 df1.groupby('col1').agg({'col2': ['min', 'max'], 'col3': min})
-
-df1.pivot_table(index = 'col1', columns = 'col2', values = 'col3', aggfunc = 'max', fill_value = 0) 
-#All distinct values of col1 become index. All distinct values of col2 become column name. Values are col3.
+.agg() can only aggregate data in each column separately, so it cannot compute values which involve two columns
+.apply can handle multi-column operations
 
 different multiply
 (1) A * B, np.multiply(A, B)
@@ -159,3 +158,6 @@ output:
       ID
       s1         Smith       male
       s2         Mary        female
+
+df1.pivot_table(index = 'col1', columns = 'col2', values = 'col3', aggfunc = 'max', fill_value = 0) 
+#All distinct values of col1 become index. All distinct values of col2 become column name. Values are col3.
