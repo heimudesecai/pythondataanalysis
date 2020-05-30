@@ -161,3 +161,6 @@ output:
 
 df1.pivot_table(index = 'col1', columns = 'col2', values = 'col3', aggfunc = 'max', fill_value = 0) 
 #All distinct values of col1 become index. All distinct values of col2 become column name. Values are col3.
+
+pd.concat([df1, df2]) #concat along raws, df1 and df2 have the same columns names (not necessary)
+pd.concat([df1, df3], axis = 1) #concat along column
