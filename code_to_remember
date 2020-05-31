@@ -166,3 +166,15 @@ df1.pivot_table(index = 'col1', columns = 'col2', values = 'col3', aggfunc = 'ma
 pd.concat([df1, df2]) #concat along raws, df1 and df2 have the same columns names (not necessary)
 pd.concat([df1, df3], axis = 1) #concat along column
 
+numpy.apply_along_axis(func1d, axis, arr, *args, **kwargs) #Apply a function to 1-D slices along the given axis
+#func1d: This function should accept 1-D arrays. It is applied to 1-D slices of arr along the specified axis.
+#axis: for a 2D matrix 0 means column-wise and 1 means row-wise
+#arr: input
+>>> def my_func(a):
+...     """Average first and last element of a 1-D array"""
+...     return (a[0] + a[-1]) * 0.5
+>>> b = np.array([[1,2,3], [4,5,6], [7,8,9]])
+>>> np.apply_along_axis(my_func, 0, b)
+array([ 4.,  5.,  6.])
+>>> np.apply_along_axis(my_func, 1, b)
+array([ 2.,  5.,  8.])
